@@ -5,6 +5,15 @@ const CANVAS_HEIGHT = canvas.height = container.clientHeight;
 const ctx = canvas.getContext("2d");
 // origin is in upper left corner
 
+/////////////////// MATH /////////////////////////////////////
+
+// returns [min, max],  both are inclusive.
+function getRandomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/////////////////// DRAWING BACKGROUND /////////////////////////////////////
+
 function fillBackground( color) {
   ctx.fillStyle = color;
   ctx.fillRect(0,0,CANVAS_WIDTH,CANVAS_HEIGHT)
@@ -134,11 +143,97 @@ function drawCirclesGrowing( _x, _y, _initial_radius, _color, _num_circles) {
   }
 }
 
-
-// _x, _y, _w, _h:  location and size of the box containing the scene
-function hail( _x, _y, _w, _h) {
+// _x, _y, _w, _h:  upper-left corner and size of the box containing the scene
+// Inside the box, draw randomly located circles that are within the 
+// specified radii range.
+function drawRandomCircles( _x, _y, _w, _h, 
+                            _minRadius, _maxRadius, 
+                            _fillColor, _outlineColor,
+                            _numCircles) {
+  ctx.strokeStyle = _outlineColor;
+  for( var i=1; i<= _numCircles; i++) {
+    radius = getRandomInteger(_minRadius, _maxRadius);
+    x = _x + radius + Math.floor(Math.random() * (_w - 2 * radius));
+    y = _y + radius + Math.floor(Math.random() * (_h - 2 * radius));
+    fillCircle( x, y, radius, _fillColor);
+  }
 }
 
+/////////////////////// ANIMATING CIRCLES ///////////////////////////////
+
+let circleRollingInterval = 0;
+let circleRollingX = 0  // left edge of the circle
+
+function circle_rolling( _x, _y, _w, _h, _radius, 
+                         _fillColor, _outlineColor) {
+  fillRect( _x, _y, _w, _h, "pink");  // make bg pink
+  ctx.strokeStyle = _outlineColor;
+  fillCircle( _x + circleRollingX + _radius, 
+              _y + _h - _radius, _radius, _fillColor);
+  circleRollingX = (circleRollingX + 1) % (_w - 2 * _radius);
+}
+
+// _x, _y, _w, _h:  upper-left corner and size of the box containing the scene
+function start_circle_rolling( _x, _y, _w, _h, _radius, 
+                            _fillColor, _outlineColor) {
+  circleRollingX = _x;
+  // redraw every 50 milliseconds
+  circleRollingInterval = setInterval( function() { 
+    circle_rolling( _x, _y, _w, _h, _radius, _fillColor, _outlineColor)
+  }, 50);  
+}
+
+
+
+let circleBouncingInterval = 0;
+let circleBouncingX = 0  // left edge of the circle
+                         // can range from 0 to _w
+
+function circle_bouncing( _x, _y, _w, _h, _radius, 
+                         _fillColor, _outlineColor) {
+  fillRect( _x, _y, _w, _h, "pink");  // make bg pink
+  ctx.strokeStyle = _outlineColor;
+  fillCircle( _x + circleBouncingX + _radius, 
+              _y + _h - _radius, _radius, _fillColor);
+  if (circleBouncingX >= (_w - 2 * _radius)) velocityX = -10;
+  if (circleBouncingX <= 0) velocityX = 10;
+  circleBouncingX += velocityX;
+}
+
+// _x, _y, _w, _h:  upper-left corner and size of the box containing the scene
+function start_circle_bouncing( _x, _y, _w, _h, _radius, 
+                                _fillColor, _outlineColor) {
+  circleBouncingX = 0;
+  // redraw every 50 milliseconds
+  circleBouncingInterval = setInterval( function() { 
+    circle_bouncing( _x, _y, _w, _h, _radius, _fillColor, _outlineColor)
+  }, 50);  
+}
+
+
+let numHail = 0;
+let hailInterval = 0;
+console.log("hey!")
+
+// _x, _y, _w, _h:  upper-left corner and size of the box containing the scene
+function hail( _x, _y, _w, _h) {
+  console.log("hail")
+  // Math.random() returns [0,1)
+  x = _x + Math.floor(Math.random() * _w);
+  y = _y + Math.floor(Math.random() * _h);
+  fillCircle( x, y, 1, "#FFF");
+  numHail++;
+  if (numHail >= 100) {
+    clearInterval( hailInterval);  
+  }
+}
+
+function start_hail( _x, _y, _w, _h) {
+  fillRect( _x, _y, _w, _h, "#000");  // make bg black
+  hailInterval = setInterval( function() { 
+    hail( _x, _y, _w, _h)
+  }, 500);  // draw 2 white dots every second
+}
 
 // NOTE: if colors are not updating correctly when strokeStyle() is called,
 // then make sure all the beginPath() and closePath() have defined 
@@ -162,9 +257,12 @@ function draw() {
   drawLinesFromTopLeft(400,50,100,100, "red", 20)
   //drawLinesFromTopRight(0,0,CANVAS_WIDTH,CANVAS_HEIGHT, "red", 20)
   drawLinesFromTopRight(500,50,100,100, "red", 20)
+  drawRandomCircles(600,50,100,100,10,20,"green", "orange", 100);
+  drawRandomCircles(700,50,100,100,10,20,"white", "black", 10);
+  start_hail(800,50,100,100);
+  start_circle_bouncing(900,50,200,50,20,"purple", "#FF0");
+  start_circle_rolling(900,100,200,50,20,"purple", "#FF0");
   
 }
 
 draw()
-// call the draw() function every 50 milliseconds
-//setInterval(draw, 50);
