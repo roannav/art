@@ -1,0 +1,15 @@
+body {
+  /* margin is the space around an element, outside of the border */
+  /* padding is inside the border */
+  margin: 0px;
+}
+
+#main {
+  display: grid;            /* div id="main" is the grid container */
+  justify-content: center;  /* center it horizontally */
+  align-content: center;    /* center it vertically */
+  background: #000;         /* bg color */
+  width: 100vw;             /* width is 100% of the viewport width */
+  height: 100vh;            /* height is 100% of the viewport height */
+  overflow: hidden;         /* clip overflow.  no scrollbars */
+}
