@@ -159,6 +159,16 @@ function drawRandomCircles( _x, _y, _w, _h,
   }
 }
 
+function drawTransparentCircles(_x, _y, _w, _h) {
+  radius = 30;
+  for( var i=0; i<360; i+=30) {
+      color = `hsla(${i}, 100%, 50%, 50%)`;
+      ctx.strokeStyle = color;
+      fillCircle( _x + i + radius, _y + _h/2, radius, color);
+  }
+}
+
+
 /////////////////////// ANIMATING CIRCLES ///////////////////////////////
 
 
@@ -167,7 +177,7 @@ let drawRandomColorCirclesInterval = 0;
 
 function drawRandomColorCircles( _x, _y, _w, _h, 
                             _minRadius, _maxRadius) {
-  color = `hsl(${colorStep%360}, 100%, 50%)`
+  color = `hsl(${colorStep%360}, 100%, 50%)`;
   ctx.strokeStyle = color;
   radius = getRandomInteger(_minRadius, _maxRadius);
   x = _x + radius + Math.floor(Math.random() * (_w - 2 * radius));
@@ -204,9 +214,9 @@ function colorfulSnake( _x, _y, _w, _h, _radius) {
       snakeVX = -10;
   } else if (snakeX <= 0) {
       snakeVX = 10;
-  } else if (Math.random() < 0.5) {
+  } else if (Math.random() < 0.5) {  // ~50% chance
       snakeVX = -10;
-  } else {
+  } else {                           // ~50% chance
       snakeVX = 10;
   }
   snakeX += snakeVX;
@@ -329,7 +339,8 @@ function draw() {
   start_circle_bouncing(900,50,200,50,20,"purple", "#FF0");
   start_circle_rolling(900,100,200,50,20,"purple", "#FF0");
   startRandomColorCircles(0,150,100,100,10,20);
-  startColorfulSnake( 100,150,200,100,10);
+  startColorfulSnake(100,150,200,100,10);
+  drawTransparentCircles(300,150,100,100);
   
 }
 
