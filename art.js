@@ -36,6 +36,8 @@ function draw() {
   rotateTrianglesPeach(800,150,100,100);
   rotateTrianglesMulticolor(900,150,100,100);
   rotateTrianglesMulticolor2(1000,150,100,100);
+  scaleTriangles(0,250,100,100);
+  scaleTriangles2(100,250,100,100);
   
 }
 

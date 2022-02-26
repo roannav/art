@@ -63,5 +63,34 @@ function rotateTrianglesMulticolor2( _x, _y, _w, _h) {
   
 function scaleTriangles( _x, _y, _w, _h) {
   outlineRect( _x, _y, _w, _h, "black");  // make outline black
+  TRI_WIDTH = 100;
+  TRI_HEIGHT = 100;
+  ctx.save();
+  // move canvas origin to the box's lower left corner
+  ctx.translate( _x, _y + _h);  
+
+  for( var i=0; i<4; i++) {
+    fillRightTriangle( 0, 0, TRI_WIDTH, TRI_HEIGHT, "blue");
+    ctx.translate( _w / 2, -_h / 2);  
+    ctx.scale(.5,.5);
+  }
+  ctx.restore();
+}
+
+// NOTE: the line width also gets thinner as we scale down
+function scaleTriangles2( _x, _y, _w, _h) {
+  outlineRect( _x, _y, _w, _h, "black");  // make outline black
+  TRI_WIDTH = 100;
+  TRI_HEIGHT = 100;
+  ctx.save();
+  // move canvas origin to the box's lower left corner
+  ctx.translate( _x, _y + _h);  
+
+  for( var i=0; i<10; i++) {
+    outlineRightTriangle( 0, 0, TRI_WIDTH, TRI_HEIGHT, "green");
+    ctx.translate( 10, -10);  
+    ctx.scale(.9,.9);
+  }
+  ctx.restore();
 }
 
