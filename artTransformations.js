@@ -19,39 +19,19 @@ function translateTriangles( _x, _y, _w, _h) {
 }
   
 
-function rotateTrianglesPeach( _x, _y, _w, _h) {
-  outlineRect( _x, _y, _w, _h, "black");  // make outline black
-  TRI_WIDTH = 5;
-  TRI_HEIGHT = 40;
-  BOX_CENTER_X = _x + _w / 2;
-  BOX_CENTER_Y = _y + _h / 2;
-  ctx.save();
-  ctx.translate(BOX_CENTER_X, BOX_CENTER_Y);
-  for( var i=1; i<36; i++) {
-    color = `hsla(${i}, 100%, 50%, 50%)`;
-    fillRightTriangle( 0, TRI_HEIGHT, TRI_WIDTH, TRI_HEIGHT, color);
-    ctx.rotate(10);
+function getNextColor( _colorScheme, _i) {
+  if (_colorScheme == "peach") {
+    return `hsla(${_i}, 100%, 50%, 50%)`;
+  } else if (_colorScheme == "multicolor_transparent") {
+    return `hsla(${_i*10}, 100%, 50%, 50%)`;
+  } else if (_colorScheme == "multicolor") {
+    return `hsl(${_i*10}, 100%, 50%)`;
   }
-  ctx.restore();
+  return "black";
 }
-  
-function rotateTrianglesMulticolor( _x, _y, _w, _h) {
-  outlineRect( _x, _y, _w, _h, "black");  // make outline black
-  TRI_WIDTH = 5;
-  TRI_HEIGHT = 40;
-  BOX_CENTER_X = _x + _w / 2;
-  BOX_CENTER_Y = _y + _h / 2;
-  ctx.save();
-  ctx.translate(BOX_CENTER_X, BOX_CENTER_Y);
-  for( var i=1; i<36; i++) {
-    color = `hsla(${i*10}, 100%, 50%, 50%)`;
-    fillRightTriangle( 0, TRI_HEIGHT, TRI_WIDTH, TRI_HEIGHT, color);
-    ctx.rotate(10);
-  }
-  ctx.restore();
-}
-  
-function rotateTrianglesMulticolor2( _x, _y, _w, _h) {
+
+
+function rotateTriangles( _x, _y, _w, _h, _colorScheme) {
   outlineRect( _x, _y, _w, _h, "black");  // make outline black
   TRI_WIDTH = 5;
   TRI_HEIGHT = 40;
@@ -60,10 +40,22 @@ function rotateTrianglesMulticolor2( _x, _y, _w, _h) {
   ctx.save();
   ctx.translate(BOX_CENTER_X, BOX_CENTER_Y);
   for( var i=1; i<=36; i++) {
-    color = `hsl(${i*10}, 100%, 50%)`;
+    color = getNextColor( _colorScheme, i);
     fillRightTriangle( 0, TRI_HEIGHT, TRI_WIDTH, TRI_HEIGHT, color);
     ctx.rotate(10);
   }
   ctx.restore();
+}
+
+function rotateTrianglesPeach( _x, _y, _w, _h) {
+  rotateTriangles( _x, _y, _w, _h, "peach");
+}
+  
+function rotateTrianglesMulticolor( _x, _y, _w, _h) {
+  rotateTriangles( _x, _y, _w, _h, "multicolor_transparent");
+}
+  
+function rotateTrianglesMulticolor2( _x, _y, _w, _h) {
+  rotateTriangles( _x, _y, _w, _h, "multicolor");
 }
   
