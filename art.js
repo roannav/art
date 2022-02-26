@@ -32,6 +32,10 @@ function draw() {
   startRandomColorCircles(0,150,100,100,10,20);
   startColorfulSnake(100,150,200,100,10);
   drawTransparentCircles(300,150,400,100);
+  translateTriangles(700,150,100,100);
+  rotateTrianglesPeach(800,150,100,100);
+  rotateTrianglesMulticolor(900,150,100,100);
+  rotateTrianglesMulticolor2(1000,150,100,100);
   
 }
 
