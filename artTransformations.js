@@ -12,6 +12,7 @@ function translateTriangles( _x, _y, _w, _h) {
     for( var i=0; i < _w / TRI_WIDTH; i++) {
       fillRightTriangle( _x + 1, _y + j * TRI_HEIGHT, TRI_WIDTH, TRI_HEIGHT, 
         "red");
+      // ctx.translate(x,y) makes x,y become the new 0,0 on the canvas
       ctx.translate(TRI_WIDTH, 0);
     }
     ctx.restore();
@@ -42,7 +43,8 @@ function rotateTriangles( _x, _y, _w, _h, _colorScheme) {
   for( var i=1; i<=36; i++) {
     color = getNextColor( _colorScheme, i);
     fillRightTriangle( 0, TRI_HEIGHT, TRI_WIDTH, TRI_HEIGHT, color);
-    ctx.rotate(10);
+    // ctx.rotate( angle):  angle is in radians
+    ctx.rotate(deg2Rad(10));
   }
   ctx.restore();
 }
@@ -59,3 +61,7 @@ function rotateTrianglesMulticolor2( _x, _y, _w, _h) {
   rotateTriangles( _x, _y, _w, _h, "multicolor");
 }
   
+function scaleTriangles( _x, _y, _w, _h) {
+  outlineRect( _x, _y, _w, _h, "black");  // make outline black
+}
+
