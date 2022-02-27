@@ -94,3 +94,55 @@ function scaleTriangles2( _x, _y, _w, _h) {
   ctx.restore();
 }
 
+
+function skewCirclesUpAndDown( _x, _y, _w, _h, _layer, _color) {
+  RADIUS = 5;
+  OFFSET = (_layer + 0.5) * 2 * RADIUS;
+
+  NUM_CIRCLES = 14 - _layer;
+  if (NUM_CIRCLES <= 0) {
+    console.log("ERROR:  _layer is too high.");
+  }
+
+  ctx.save();
+  // move canvas origin to the box's upper left corner
+  ctx.translate( _x, _y);
+
+  for( var i=0; i<NUM_CIRCLES; i++) {
+    fillCircle( RADIUS*2*i + OFFSET, _h/2, RADIUS, _color);
+
+    // ctx.transform(a,b,c,d,e,f) it ADDS ON to the current transformation
+    // matrix, which was last set by ctx.transform().
+    // It ADDS ON to previous calls to translate(), rotate(), and scale().
+    //
+    // ctx.transform(a,b,c,d,e,f):
+    // a	Horizontal scaling
+    // b	Horizontal skewing
+    // c	Vertical skewing
+    // d	Vertical scaling
+    // e	Horizontal translation
+    // f	Vertical translation
+    ctx.transform( 1, -0.1, 0, 1, 0, 0);   // skew it up
+  }
+  ctx.restore();
+
+
+  ctx.save();
+  // move canvas origin to the box's upper left corner
+  ctx.translate( _x, _y);
+
+  for( var i=0; i<NUM_CIRCLES; i++) {
+    fillCircle( RADIUS*2*i + OFFSET, _h/2, RADIUS, _color);
+    ctx.transform( 1, 0.1, 0, 1, 0, 0);    // skew it down
+  }
+  ctx.restore();
+}
+
+function skewCircles( _x, _y, _w, _h) {
+  outlineRect( _x, _y, _w, _h, "black");  // make outline black
+  for( var i=0; i<14; i++) {
+    color = `hsla(${i*3}, 100%, 50%, 50%)`;
+    skewCirclesUpAndDown( _x, _y, _w, _h, i, color);
+  }
+}
+

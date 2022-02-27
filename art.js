@@ -20,10 +20,10 @@ function draw() {
   drawLine( 150, 10, 200, 10, "#0F0", 5);
   fillTriangle(200,100,220,70,280,120,"orange");
   outlineTriangle(300,100,320,70,380,120,"orange");
-  //drawLinesFromTopLeft(0,0,CANVAS_WIDTH,CANVAS_HEIGHT, "red", 20)
   drawLinesFromTopLeft(400,50,100,100, "red", 20)
-  //drawLinesFromTopRight(0,0,CANVAS_WIDTH,CANVAS_HEIGHT, "red", 20)
+  drawLinesFromTopLeft(0,350,100,100, "red", 3)
   drawLinesFromTopRight(500,50,100,100, "red", 20)
+  drawLinesFromTopRight(100,350,100,100, "red", 2)
   drawRandomCircles(600,50,100,100,10,20,"green", "orange", 100);
   drawRandomCircles(700,50,100,100,10,20,"white", "black", 10);
   start_hail(800,50,100,100);
@@ -38,6 +38,7 @@ function draw() {
   rotateTrianglesMulticolor2(1000,150,100,100);
   scaleTriangles(0,250,100,100);
   scaleTriangles2(100,250,100,100);
+  skewCircles(200,250,150,400);
   
 }
 
