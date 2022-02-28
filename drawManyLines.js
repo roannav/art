@@ -24,3 +24,41 @@ function drawLinesFromTopRight( _x, _y, _w, _h, _color, _step) {
   }
 }
 
+
+//////////////////////////////////////////////////////////////////////////////
+
+var nextLineY = 0;
+var nextLineX;
+var drawLinesFromTopLeftInterval;
+
+function drawNextLineFromTopLeft( _x, _y, _w, _h) {
+  STEP = 4;  // space between the end points of the different lines
+  outlineRect( _x, _y, _w, _h, "black");  // make outline black
+
+  ctx.save();
+  // move canvas origin to the box's upper left corner
+  ctx.translate( _x, _y);
+
+  drawLine( 0, 0, nextLineX, nextLineY, "aqua", 1);
+  if (nextLineY <= _h - STEP)
+    // keep drawing lines that intersect with right wall of the box.
+    nextLineY += STEP;
+  else if (nextLineX >= STEP)
+    // keep drawing lines that intersect with bottom wall of the box.
+    nextLineX -= STEP;
+  else
+    // stop drawing
+    clearInterval( drawLinesFromTopLeftInterval);
+
+  ctx.restore();
+}
+
+function drawLinesFromTopLeftAnimated( _x, _y, _w, _h) {
+  nextLine_height=0;
+  nextLineX = _w;
+  drawLinesFromTopLeftInterval = setInterval( function() {
+    drawNextLineFromTopLeft( _x, _y, _w, _h);
+  }, 100);
+}
+
+//////////////////////////////////////////////////////////////////////////////

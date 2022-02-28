@@ -36,6 +36,9 @@ function draw() {
   rotateTrianglesMulticolor(500,200,100,100);
   rotateTrianglesMulticolor2(600,200,100,100);
   startGrowingStar(700,200,100,100,51, "gold");
+
+  // Row 4
+  drawLinesFromTopLeftAnimated(0,300,100,100);
   
 }
 
