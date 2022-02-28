@@ -1,8 +1,9 @@
 /////////////////////// DRAWING MANY CIRCLES ///////////////////////////////
-function drawCirclesGrowing( _x, _y, _initial_radius, _color, _num_circles) {
+function drawCirclesGrowing( _x, _y, _w, _h, 
+                             _initial_radius, _color, _num_circles) {
   ctx.strokeStyle = _color;
   for( var i=1; i<= _num_circles; i++) {
-    outlineCircle( _x, _y, i*_initial_radius, _color);
+    outlineCircle( _x + _w/2, _y + _h/2, i*_initial_radius, _color);
   }
 }
 

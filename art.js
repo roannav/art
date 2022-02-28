@@ -9,7 +9,7 @@ const ctx = canvas.getContext("2d");
 function draw() {
   fillBackground("#EEE");
   drawManyShapes(0,0,100,100);
-  drawCirclesGrowing(100,0,10, "blue", 5)
+  drawCirclesGrowing(100,0,100,100,10, "blue", 5)
   drawLinesFromTopLeft(400,50,100,100, "red", 20)
   drawLinesFromTopLeft(0,350,100,100, "red", 3)
   drawLinesFromTopRight(500,50,100,100, "red", 20)
