@@ -8,27 +8,33 @@ const ctx = canvas.getContext("2d");
 
 function draw() {
   fillBackground("#EEE");
+
+  // Row 1
   drawManyShapes(0,0,100,100);
   drawCirclesGrowing(100,0,100,100,10, "blue", 5)
-  drawLinesFromTopLeft(400,50,100,100, "red", 20)
-  drawLinesFromTopLeft(0,350,100,100, "red", 3)
-  drawLinesFromTopRight(500,50,100,100, "red", 20)
-  drawLinesFromTopRight(100,350,100,100, "red", 2)
-  drawRandomCircles(600,50,100,100,10,20,"green", "orange", 100);
-  drawRandomCircles(700,50,100,100,10,20,"white", "black", 10);
-  start_hail(800,50,100,100);
-  start_circle_bouncing(900,50,200,50,20,"purple", "#FF0");
-  start_circle_rolling(900,100,200,50,20,"purple", "#FF0");
-  startRandomColorCircles(0,150,100,100,10,20);
-  startColorfulSnake(100,150,200,100,10);
-  drawTransparentCircles(300,150,400,100);
-  translateTriangles(700,150,100,100);
-  rotateTrianglesPeach(800,150,100,100);
-  rotateTrianglesMulticolor(900,150,100,100);
-  rotateTrianglesMulticolor2(1000,150,100,100);
-  scaleTriangles(0,250,100,100);
-  scaleTriangles2(100,250,100,100);
-  skewCircles(200,250,150,400);
+  drawLinesFromTopLeft(200,0,100,100, "red", 20)
+  drawLinesFromTopRight(300,0,100,100, "red", 20)
+  drawRandomCircles(400,0,100,100,10,20,"green", "orange", 100);
+  drawRandomCircles(500,0,100,100,10,20,"white", "black", 10);
+  start_hail(600,0,100,100);
+  start_circle_bouncing(700,0,200,50,20,"purple", "#FF0");
+  start_circle_rolling(700,50,200,50,20,"purple", "#FF0");
+
+  // Row 2
+  startRandomColorCircles(0,100,100,100,10,20);
+  startColorfulSnake(100,100,200,100,10);
+  drawTransparentCircles(300,100,400,100);
+  translateTriangles(700,100,100,100);
+  skewCircles(800,100,150,400);
+
+  // Row 3
+  scaleTriangles(0,200,100,100);
+  scaleTriangles2(100,200,100,100);
+  drawLinesFromTopLeft(200,200,100,100, "red", 3)
+  drawLinesFromTopRight(300,200,100,100, "red", 2)
+  rotateTrianglesPeach(400,200,100,100);
+  rotateTrianglesMulticolor(500,200,100,100);
+  rotateTrianglesMulticolor2(600,200,100,100);
   
 }
 
