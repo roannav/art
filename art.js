@@ -8,18 +8,8 @@ const ctx = canvas.getContext("2d");
 
 function draw() {
   fillBackground("#EEE");
-  outlineCircle( 10, 10, 10, "red");
-  fillCircle( 30, 10, 10, "red");
-  drawCirclesGrowing( 100, 100, 10, "blue", 5)
-  outlineRect(50,5,50,10,"cyan");
-  outlineRect(250,5,50,10,"cyan");
-  fillRect(50,20,50,10,"cyan");
-  fillRect(250,20,50,10,"cyan");
-  outlineRightTriangle( 120, 20, 10, 20, "#00F");
-  fillRightTriangle( 131, 21, 12, 22, "#00F");
-  drawLine( 150, 10, 200, 10, "#0F0", 5);
-  fillTriangle(200,100,220,70,280,120,"orange");
-  outlineTriangle(300,100,320,70,380,120,"orange");
+  drawManyShapes(0,0,100,100);
+  drawCirclesGrowing(100,0,10, "blue", 5)
   drawLinesFromTopLeft(400,50,100,100, "red", 20)
   drawLinesFromTopLeft(0,350,100,100, "red", 3)
   drawLinesFromTopRight(500,50,100,100, "red", 20)
