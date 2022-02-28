@@ -35,6 +35,7 @@ function draw() {
   rotateTrianglesPeach(400,200,100,100);
   rotateTrianglesMulticolor(500,200,100,100);
   rotateTrianglesMulticolor2(600,200,100,100);
+  startGrowingStar(700,200,100,100,51, "gold");
   
 }
 
