@@ -57,6 +57,32 @@ function fillRightTriangle( _x, _y, _w, _h, _color) {
   ctx.fill();
 }
 
+// _x, _y is the top corner of an equilateral triangle with the point on top
+// _w is the width of the base
+function outlineEquilateralTriangle( _x, _y, _w, _color) {
+  ctx.strokeStyle = _color;
+  ctx.beginPath();
+  ctx.moveTo(_x,_y);
+  y2 = _y + _w * Math.sqrt(3)/2;
+  ctx.lineTo(_x+_w/2, y2);
+  ctx.lineTo(_x-_w/2, y2);
+  ctx.closePath();
+  ctx.stroke();
+}
+
+// _x, _y is the top corner of an equilateral triangle with the point on top
+// _w is the width of the base
+function fillEquilateralTriangle( _x, _y, _w, _color) {
+  ctx.fillStyle = _color;
+  ctx.beginPath();
+  ctx.moveTo(_x,_y);
+  y2 = _y + _w * Math.sqrt(3)/2;
+  ctx.lineTo(_x+_w/2, y2);
+  ctx.lineTo(_x-_w/2, y2);
+  ctx.closePath();
+  ctx.fill();
+}
+
 function outlineTriangle( _x, _y, _x2, _y2, _x3, _y3, _color) {
   ctx.strokeStyle = _color;
   ctx.beginPath();
