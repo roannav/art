@@ -21,6 +21,8 @@ function drawManyShapes( _x, _y, _w, _h) {
 
   outlineEquilateralTriangle( 10, 80, 20, "violet");
   fillEquilateralTriangle( 30, 80, 20, "violet");
+  outlineEquilateralTriangle( 50, 98, 20, "violet", true);
+  fillEquilateralTriangle( 70, 98, 20, "violet", true);
 
   ctx.restore();
 }

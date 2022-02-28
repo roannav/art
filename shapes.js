@@ -59,11 +59,17 @@ function fillRightTriangle( _x, _y, _w, _h, _color) {
 
 // _x, _y is the top corner of an equilateral triangle with the point on top
 // _w is the width of the base
-function outlineEquilateralTriangle( _x, _y, _w, _color) {
+// _flipUpsideDown is a boolean.  If true, then triangle is upside down, with
+//   one corner pointing down.
+function outlineEquilateralTriangle( _x, _y, _w, _color, _flipUpsideDown=false) {
   ctx.strokeStyle = _color;
   ctx.beginPath();
   ctx.moveTo(_x,_y);
-  y2 = _y + _w * Math.sqrt(3)/2;
+  if (_flipUpsideDown) {
+    y2 = _y - _w * Math.sqrt(3)/2;
+  } else {
+    y2 = _y + _w * Math.sqrt(3)/2;
+  }
   ctx.lineTo(_x+_w/2, y2);
   ctx.lineTo(_x-_w/2, y2);
   ctx.closePath();
@@ -72,11 +78,17 @@ function outlineEquilateralTriangle( _x, _y, _w, _color) {
 
 // _x, _y is the top corner of an equilateral triangle with the point on top
 // _w is the width of the base
-function fillEquilateralTriangle( _x, _y, _w, _color) {
+// _flipUpsideDown is a boolean.  If true, then triangle is upside down, with
+//   one corner pointing down.
+function fillEquilateralTriangle( _x, _y, _w, _color, _flipUpsideDown=false) {
   ctx.fillStyle = _color;
   ctx.beginPath();
   ctx.moveTo(_x,_y);
-  y2 = _y + _w * Math.sqrt(3)/2;
+  if (_flipUpsideDown) {
+    y2 = _y - _w * Math.sqrt(3)/2;
+  } else {
+    y2 = _y + _w * Math.sqrt(3)/2;
+  }
   ctx.lineTo(_x+_w/2, y2);
   ctx.lineTo(_x-_w/2, y2);
   ctx.closePath();
