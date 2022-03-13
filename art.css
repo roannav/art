@@ -10,6 +10,72 @@ body {
   align-content: center;    /* center it vertically */
   background: #000;         /* bg color */
   width: 100vw;             /* width is 100% of the viewport width */
-  height: 100vh;            /* height is 100% of the viewport height */
+  height: 90vh;             /* height is 90% of the viewport height */
   overflow: hidden;         /* clip overflow.  no scrollbars */
+  border-top: 4px solid black; 
+}
+
+
+
+/*************************** Navigation Bar ***************************/
+
+.navbar {
+  background-color: #283747;
+  overflow: hidden;
+}
+
+/* links inside the navigation bar */
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.navbar a:hover {
+  background-color: #f3f3f3;
+  color: black;
+}
+
+/* Add an active class to highlight the current page */
+.navbar a.active {
+  background-color: #DE354C;
+  color: white;
+}
+
+/* Hide the link that should open and close the navbar on small screens */
+.navbar .hamburger-icon {
+  display: none;
+}
+
+
+
+/*************************** Media Queries ***************************/
+
+/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("canvas"). Show the link that contains should open and close the navbar (.hamburger-icon) */
+@media screen and (max-width: 600px) {
+  .navbar a:not(:first-child) {display: none;}
+  .navbar a.hamburger-icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the navbar with JavaScript when the user clicks on the hamburger-icon. This class makes the navbar look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
+  .navbar.responsive {position: relative;}
+  .navbar.responsive a.hamburger-icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .navbar.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }
